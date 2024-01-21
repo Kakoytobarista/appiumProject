@@ -25,3 +25,30 @@ Run:
 ```appium --log-level debug```
 2. Simulator of ios device
 ```inside of xCODE```
+
+
+
+--- instruction for setup
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+-- build app on simulator
+select device
+build on xcode
+find your device's UUID
+ xcrun simctl list 'devices' 'booted'
+
+-- run test
+capabilities.py -> update UUID
+pytest -s -v --alluredir=./allure-results tests
+
+
+-- find button identifier
+open accessibility inspector (help->search for it)
+select the device we want to monitor on top left (Simulator -> all processes)
+click on the circle button on the top right
+select on device, note down either the labvel or identifier. Apparently both works. 
+
+-- modify the code to add the new custom action
+-- in main_page_object.py, modify the code to see your custom action
