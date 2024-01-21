@@ -1,4 +1,5 @@
 import abc
+from io import BytesIO
 
 from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
