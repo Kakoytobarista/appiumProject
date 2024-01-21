@@ -1,4 +1,6 @@
 import allure
+import pytest
+
 from appiumFramework.assertions import Assertions
 from hello_world_tests.page_objects.main_page_object import MainPageObject
 
@@ -22,3 +24,6 @@ class TestMainPage:
             Assertions.assert_are_equal(
                 expected_result=file_text,
                 actual_result='Hello, world!')
+
+        with allure.step('Get file text'):
+            main_page.click_to_documents_btn()

@@ -5,3 +5,5 @@ allure-results/*
 __pycache__/
 */allure-results/*.json
 appiumFramework/__pycache__/
+*/page_objects/__pycache__/main_page_object.cpython-311.pyc
+allure-results/
