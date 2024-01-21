@@ -4,3 +4,4 @@ venv/
 allure-results/*
 __pycache__/
 */allure-results/*.json
+appiumFramework/__pycache__/
