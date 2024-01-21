@@ -1,5 +1,4 @@
 import allure
-import pytest
 
 from appiumFramework.assertions import Assertions
 from hello_world_tests.page_objects.main_page_object import MainPageObject
