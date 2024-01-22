@@ -1,5 +1,4 @@
 import abc
-from io import BytesIO
 
 from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
@@ -7,6 +6,15 @@ from appium.webdriver import WebElement
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+from appiumFramework.logs import logger
+
+
+class ElementNotFound(Exception):
+    """
+    Error class of Element Exception
+    """
+    pass
 
 
 class AbstractBasePage(abc.ABC):
@@ -21,7 +29,7 @@ class AbstractBasePage(abc.ABC):
 
     @staticmethod
     @abc.abstractmethod
-    def send_keys(element: WebElement) -> None:
+    def send_keys(element: WebElement, text: str) -> None:
         pass
 
 
@@ -32,27 +40,58 @@ class BasePage(AbstractBasePage):
         self.driver.implicitly_wait(self.timeout)
 
     def find_element_by(self, by, selector):
-        return self.driver.find_element(by, selector)
+        try:
+            element = self.driver.find_element(by, selector)
+            logger.debug(f'Found the element {element}, by selector: {selector}, by {by}')
+            return element
+        except Exception as e:
+            raise ElementNotFound(f'Error while finding element: {e}')
 
     def wait_for_element_presence(self, by, selector):
-        return WebDriverWait(self.driver, self.timeout).until(
-            EC.presence_of_element_located((by, selector))
-        )
+        try:
+            element = WebDriverWait(self.driver, self.timeout).until(
+                EC.presence_of_element_located((by, selector))
+            )
+            logger.debug(f'Found the element {element}, by selector: {selector}, by {by}')
+            return element
+        except Exception as e:
+            raise ElementNotFound(
+                f'Error while finding element: {e}, by: {by}, {selector} '
+                f'with presence_of_element_located'
+            )
 
     def wait_for_element_visibility(self, by, selector):
-        return WebDriverWait(self.driver, self.timeout).until(
-            EC.visibility_of_element_located((by, selector))
-        )
+        try:
+            element = WebDriverWait(self.driver, self.timeout).until(
+                EC.visibility_of_element_located((by, selector))
+            )
+            logger.debug(f'Found the element {element}, by selector: {selector}, by {by}')
+            return element
+        except Exception as e:
+            raise ElementNotFound(
+                f'Error while finding element: {e}, by: {by}, {selector} '
+                f'with visibility_of_element_located'
+            )
 
     def wait_for_element_clickable(self, by, selector):
-        return WebDriverWait(self.driver, self.timeout).until(
-            EC.element_to_be_clickable((by, selector))
-        )
+        try:
+            element = WebDriverWait(self.driver, self.timeout).until(
+                EC.element_to_be_clickable((by, selector))
+            )
+            logger.debug(f'Found the element {element}, by selector: {selector}, by {by}')
+            return element
+        except Exception as e:
+            raise ElementNotFound(
+                f'Error while finding element: {e}, by: {by}, {selector} '
+                f'with element_to_be_clickable'
+            )
 
     @staticmethod
     def click_on_element(element):
+        logger.debug(f'Click to element {element}')
         element.click()
 
     @staticmethod
-    def send_keys(element):
-        element.send_keys()
+    def send_keys(element, text):
+        logger.debug(f'Set value: {text}, to {element}')
+        element.send_keys(text)

@@ -3,6 +3,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 
 from appiumFramework.base_page_object import BasePage
 
+
 class MainPageObject(BasePage):
     CREATE_FILE_IDENTIFIER_BTN = 'FullDocumentManagerViewControllerNavigationBarCreateButtonIdentifier'
     FILE_INPUT_ELEM = 'inputField'
