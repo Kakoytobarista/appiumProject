@@ -2,6 +2,8 @@ import abc
 
 from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
+from appium.webdriver.common.touch_action import TouchAction
+
 from appium.webdriver import WebElement
 
 from selenium.webdriver.support.ui import WebDriverWait
@@ -95,3 +97,10 @@ class BasePage(AbstractBasePage):
     def send_keys(element, text):
         logger.debug(f'Set value: {text}, to {element}')
         element.send_keys(text)
+
+    def swipe_left(self):
+        start_x = 400
+        start_y = 500
+        end_x = 50
+        end_y = 400
+        TouchAction(self.driver).press(x=start_x, y=start_y).move_to(x=end_x, y=end_y).release().perform()

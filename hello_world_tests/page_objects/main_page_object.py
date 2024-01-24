@@ -6,9 +6,9 @@ from appiumFramework.base_page_object import BasePage
 
 class MainPageObject(BasePage):
     CREATE_FILE_IDENTIFIER_BTN = 'FullDocumentManagerViewControllerNavigationBarCreateButtonIdentifier'
-    FILE_INPUT_ELEM = 'inputField'
     CREATE_DOCUMENT_BTN = 'Create Document'
-    BROWSE_BTN = 'Browse'  # Accessibility identifier for the "Browse" element
+    FILE_INPUT_ELEM = 'Untitled'
+    BROWSE_BTN = 'Browse'
     DOCUMENTS_BTN = 'Documents'
 
     def __init__(self, driver: webdriver):
@@ -21,7 +21,14 @@ class MainPageObject(BasePage):
         )
         self.click_on_element(element=create_btn)
 
-    def get_file_text(self):
+    def create_new_file_via_create_document_btn(self):
+        """Method creating new file and open it"""
+        create_btn = self.wait_for_element_presence(
+            by=AppiumBy.ACCESSIBILITY_ID, selector=self.CREATE_DOCUMENT_BTN
+        )
+        self.click_on_element(element=create_btn)
+
+    def get_name_of_file(self):
         file_input = self.wait_for_element_presence(
             by=AppiumBy.ACCESSIBILITY_ID, selector=self.FILE_INPUT_ELEM
         )

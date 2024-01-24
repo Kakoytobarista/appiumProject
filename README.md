@@ -52,3 +52,15 @@ select on device, note down either the labvel or identifier. Apparently both wor
 
 -- modify the code to add the new custom action
 -- in main_page_object.py, modify the code to see your custom action
+
+
+TestingBot:
+store app into storage:
+```
+curl -X POST "https://api.testingbot.com/v1/storage" \
+-u 76a48a70109b8cc5740ebe8815871256:50a1abfc8f00f15d47091fdc07442ae4 -F "file=@/Users/aslan/PetProjects/appiumProject/helloWorld/helloWorld.ipa"
+```
+
+You should create file .env in root dir and set these:
+KEY=76a48a70109b8cc5740ebe8815871256
+SECRET=50a1abfc8f00f15d47091fdc07442ae4
