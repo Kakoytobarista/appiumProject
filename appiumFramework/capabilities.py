@@ -31,7 +31,7 @@ class IOSCapabilities:
         "platformName": "iOS",
         'realDevice': False,
         "version": "17.2",
-        "app": "tb://0a594428d1ea43611a9eaed9",
+        "app": "tb://d5bb756212d1a790eb98e38c",
         "automationName": "XCUITest"
     }
 

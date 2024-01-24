@@ -62,5 +62,9 @@ curl -X POST "https://api.testingbot.com/v1/storage" \
 ```
 
 You should create file .env in root dir and set these:
-KEY=76a48a70109b8cc5740ebe8815871256
-SECRET=50a1abfc8f00f15d47091fdc07442ae4
+KEY=1edd09f0a57279283a79e68001f52f98
+SECRET=46e066f093ec726f2525140f1acadc02
+
+testingBot creds:
+email: baristan1@rambler.ru
+password: aslanaslan123
